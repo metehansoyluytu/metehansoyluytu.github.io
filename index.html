@@ -3,56 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benim Web Sitem</title>
-
+    <title>Hiçbir Şeyin Merkezi</title>
+    <!-- Tailwind CSS yüklemesi -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0d1117;
-            color: white;
-            text-align: center;
-        }
-
-        header {
-            padding: 70px 20px;
-        }
-
-        h1 {
-            color: #58a6ff;
-            font-size: 42px;
-        }
-
-        p {
-            color: #c9d1d9;
-            font-size: 18px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background: #238636;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-        }
-
-        a:hover {
-            background: #2ea043;
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col justify-between selection:bg-purple-500 selection:text-white">
 
-<body>
-    <header>
-        <h1>Merhaba, Dünya!</h1>
-
-        <p>Bu benim ilk web sitem.</p>
-
-        <a href="https://github.com/">
-            GitHub Profilim
-        </a>
+    <!-- Üst Bilgi (Navbar) -->
+    <header class="border-b border-zinc-800 p-6 flex justify-between items-center bg-zinc-900/50 backdrop-blur-md">
+        <div class="flex items-center space-x-3">
+            <div class="w-4 h-4 rounded-full bg-purple-500 animate-pulse"></div>
+            <h1 class="font-bold text-lg tracking-wider">ABSÜRT.SYS</h1>
+        </div>
+        <div id="status-bar" class="text-xs text-zinc-400 bg-zinc-800 px-3 py-1.5 rounded-full border border-zinc-700">
+            Sistem Durumu: Tamamen Anlamsız
+        </div>
     </header>
+
+    <!-- Ana İçerik -->
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full text-center">
+        <div class="space-y-4 mb-12">
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                Hiçbir Şeye Hoş Geldiniz
+            </h2>
+            <p class="text-zinc-400 text-lg max-w-xl mx-auto">
+                Bu web sitesi tamamen görsellikten ibarettir, hiçbir gerçek dünya problemi çözmez, karbon salınımından başka işe yaramaz.
+            </p>
+        </div>
+
+        <!-- Kontrol Paneli / Butonlar -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-12">
+            <!-- Boşluk Artırıcı -->
+            <button onclick="boslukArtir()" class="group relative px-6 py-4 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-purple-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/10 active:scale-95 text-left">
+                <div class="font-semibold text-purple-400 mb-1">⇕ Boşluk Artırıcı</div>
+                <div class="text-xs text-zinc-400">Sayfaya gereksiz dikey boşluk ekler.</div>
+            </button>
+
+            <!-- Anlamsız Sayı Üretici -->
+            <button onclick="sayiUret()" class="group relative px-6 py-4 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-pink-500 transition-all duration-300 shadow-lg hover:shadow-pink-500/10 active:scale-95 text-left">
+                <div class="font-semibold text-pink-400 mb-1">🔢 Anlamsız Sayı Üretici</div>
+                <div class="text-xs text-zinc-400" id="sayi-display">Şu anki değer: 0 (Hiçbir şey)</div>
+            </button>
+
+            <!-- Rastgele Gereksiz Bilgi Ver -->
+            <button onclick="bilgiVer()" class="group relative px-6 py-4 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-blue-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/10 active:scale-95 text-left">
+                <div class="font-semibold text-blue-400 mb-1">💡 Gereksiz Bilgi Sıçraması</div>
+                <div class="text-xs text-zinc-400">Tamamen lüzumsuz bir gerçek öğrenin.</div>
+            </button>
+
+            <!-- Hiçbir Şey Yapma Tuşu -->
+            <button onclick="hicbirSeyYapma()" class="group relative px-6 py-4 rounded-2xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 active:scale-95 text-left">
+                <div class="font-semibold text-emerald-400 mb-1">🛑 Hiçbir Şey Yapma Tuşu</div>
+                <div class="text-xs text-zinc-400">Tıkladığında gerçekten hiçbir şey olmaz.</div>
+            </button>
+        </div>
+
+        <!-- Çıktı / Mesaj Kutusu -->
+        <div id="output-box" class="max-w-xl mx-auto p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 text-sm min-h-[100px] flex items-center justify-center text-center shadow-inner">
+            Düğmelere basarak bu boşluğu anlamlı veya anlamsız metinlerle doldurabilirsiniz.
+        </div>
+        
+        <!-- Dinamik Boşluk Alanı -->
+        <div id="dynamic-space" class="space-y-2 mt-6"></div>
+    </main>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="border-t border-zinc-800 p-6 text-center text-xs text-zinc-500 bg-zinc-900/30">
+        <p>&copy; 2026 Hiçbir Hak Saklıdır, Zaten Ortada Hak Edilecek Bir Şey Yok.</p>
+    </footer>
+
+    <!-- JavaScript Mantığı -->
+    <script>
+        // Anlamsız sayı üretici için sayaç
+        let sayac = 0;
+        function sayiUret() {
+            sayac += Math.floor(Math.random() * 145) - 30; // Rastgele artıp azalabilir
+            document.getElementById('sayi-display').innerText = `Şu anki değer: ${sayac} (Anlamsız)`;
+            
+            const mesajlar = [
+                `Sayı ${sayac} oldu. Bunun ne anlama geldiğini kimse bilmiyor.`,
+                `Harika! Sayıyı ${sayac} yaptın. Evrenin entropisi biraz daha arttı.`,
+                `Matematik bu sayıya ağlıyor: ${sayac}`
+            ];
+            gosterMesaj(mesajlar[Math.floor(Math.random() * mesajlar.length)]);
+        }
+
+        // Boşluk artırıcı fonksiyon
+        function boslukArtir() {
+            const container = document.getElementById('dynamic-space');
+            const yeniDiv = document.createElement('div');
+            yeniDiv.className = "p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 text-zinc-500 text-xs animate-fade-in";
+            yeniDiv.innerText = `[Boşluk Kaydı #${container.children.size + 1}] Burası tamamen lüzumsuz bir dikey boşluk alanıdır.`;
+            container.appendChild(yeniDiv);
+            
+            gosterMesaj("Sayfaya fazladan bir boşluk katmanı eklendi. Kaydırmaya devam edin!");
+        }
+
+        // Gereksiz bilgi listesi
+        const gereksizBilgiler = [
+            "Deniz anaları %95 sudan oluşur, aynı pazartesi günkü enerjiniz gibi.",
+            "Klavyenizdeki boşluk tuşu, klavyedeki en büyük tuştur ama en az saygı görenidir.",
+            "Eğer sürekli ekrana bakarsanız, ekran da size boş boş bakacaktır.",
+            "Şu an bu yazıyı okuyorsunuz ve bu bilgi hayatınızı hiçbir şekilde değiştirmeyecek.",
+            "Salatalıklar %96 su içerir, bu da onları aslında sebzeden çok ıslaklık yapar."
+        ];
+
+        function bilgiVer() {
+            const rastgeleBilgi = gereksizBilgiler[Math.floor(Math.random() * gereksizBilgiler.length)];
+            gosterMesaj(rastgeleBilgi);
+        }
+
+        function hicbirSeyYapma() {
+            gosterMesaj("Butona bastınız ve sistem kontrol etti: Gerçekten hiçbir şey olmuyor. Mükemmel bir iş başardınız.");
+        }
+
+        function gosterMesaj(metin) {
+            const kutu = document.getElementById('output-box');
+            kutu.style.opacity = 0;
+            setTimeout(() => {
+                kutu.innerText = metin;
+                kutu.style.opacity = 1;
+            }, 150);
+        }
+    </script>
 </body>
 </html>
